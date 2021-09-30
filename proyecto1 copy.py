@@ -9,21 +9,45 @@ from random import randrange
 root = Tk()
 root.title("===Juegos de Esteban===")
 root.iconbitmap("chimuelo_icon.ico")
-root.geometry("300x150")
+root.geometry("330x210")
+root.resizable(0, 0)
 
 #---------frame---------
 miFrame = Frame(root)
-miFrame.pack(fill="both", expand=1)
+miFrame.pack(fill= "both", expand= 1)
 
-#---------fondo---------
-imagen = PhotoImage(file = "Mango.png")
+#---------fondos---------
+#principal
+imagen = PhotoImage(file = "img/Mango.png")
 fondo = Label (miFrame, image= imagen)
-fondo.place(x=0, y=0, relwidth=1, relheight=1)
+fondo.place(x=0, y=0, relwidth= 1, relheight= 1)
+"""
+#piedra papel o tijera
+imagen2 = PhotoImage(file= "img/Mojito.png")
+fondo2 = Label(ventanaPiPaTi, image= imagen2)
+fondo2.place(x= 0, y= 0, relwidth= 1, relheight= 1)
+
+#ta te ti
+imagen3 = PhotoImage(file= "img/Radar.jpg")
+fondo3 = Label(ventanaTateti, image= imagen3)
+fondo3.place(x= 0, y= 0, relwidth= 1, relheight= 1)
+
+#ahoracadito
+imagen4 = PhotoImage(file= "img/Stripe.png")
+fondo4 = Label(ventanaAhorcadito, image= imagen4)
+fondo4.place(x= 0, y= 0, relwidth= 1, relheight= 1)
+
+#encuentra el numero
+imagen5 = PhotoImage(file= "img/BurningOrange.png")
+fondo5 = Label(ventanaEncuentraN, image= imagen4)
+fondo5.place(x= 0, y= 0, relwidth= 1, relheight= 1)
+
+"""
 
 #---------label---------
 label = Label(miFrame, text= "Elige una opción: ")
-label.grid(row=0,column=0, pady=5)
-label.config(bg="#ffe259")
+label.place(x= "10", y= "10")
+label.config(bg= "#ffa751", font= ("Serif", 11))
 
 #---------funciones---------
 #--------------------------------------------------------------ahorcado----------------------------------
@@ -193,20 +217,20 @@ def encuentraElNumero():
 
 
 #---------botonera---------
-botonJuego1= Button(miFrame, text="Piedra, Papel o Tijeras", width=16, command=lambda:jugarPiedraPapelTijera(puntoJugador, puntoCPU))
-botonJuego1.config(bg="#95a5a6")
-botonJuego1.grid(row=1, column=0, padx=5, pady=2)
+botonJuego1= Button(miFrame, text="Piedra, Papel o Tijeras", width=18, height=2, command=lambda:jugarPiedraPapelTijera(puntoJugador, puntoCPU))
+botonJuego1.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego1.place(x= "20",y= "50")
 
-botonJuego2= Button(miFrame, text="Ta-Te-Ti", width=8, command=lambda:taTeTi())
-botonJuego2.config(bg="#95a5a6")
-botonJuego2.grid(row=1, column=1, padx=5, pady=2)
+botonJuego2= Button(miFrame, text="Ta-Te-Ti", width= 8, height= 2, command=lambda:taTeTi())
+botonJuego2.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego2.place(x= "223", y= "50")
 
-botonJuego3= Button(miFrame, text="Ahorcado", width=10, command=lambda:ahorcadito())
-botonJuego3.config(bg="#95a5a6")
-botonJuego3.grid(row=2, column=0, padx=5, pady=2)
+botonJuego3= Button(miFrame, text="Ahorcado", width= 10, height= 2, command=lambda:ahorcadito())
+botonJuego3.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego3.place(x= "20", y= "120")
 
-botonJuego4= Button(miFrame, text="Encuentra el numero", width=20, command=lambda:encuentraElNumero())
-botonJuego4.config(bg="#95a5a6")
-botonJuego4.grid(row=2, column=1, padx=5, pady=2)
+botonJuego4= Button(miFrame, text="Encuentra el numero", width= 16, height= 2, command=lambda:encuentraElNumero())
+botonJuego4.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego4.place(x= "153", y= "120")
 
 root.mainloop()
