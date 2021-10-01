@@ -13,11 +13,11 @@ raizP.resizable(0, 0)
 frameP = Frame(raizP)
 frameP.pack(fill= "both", expand= 1)
 
-#---------icono---------
+#---------fondo---------
 #piedra papel o tijera
-imagen2 = PhotoImage(file= "img/Mojito.png")
-fondo2 = Label(frameP, image= imagen2)
-fondo2.place(x= 0, y= 0, relwidth= 1, relheight= 1)
+imagenP = PhotoImage(file= "img/Mojito.png")
+fondoP = Label(frameP, image= imagenP)
+fondoP.place(x= 0, y= 0, relwidth= 1, relheight= 1)
 
 
 #---------funciones----------------------

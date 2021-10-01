@@ -1,8 +1,11 @@
 def ahorcadito():
-    from colorama import Fore
+    from colorama import Fore,init
+    from getpass import getpass
+
+    init()
 
     oportunidades = 7
-    palabraAdivinar = input("Ingrese la palabra a adivinar: ").lower()
+    palabraAdivinar = getpass("Ingrese la palabra a adivinar: ").lower()
     adivinado = ["_"]* len(palabraAdivinar)
     
     print(f"Oportunidades: {oportunidades}")
@@ -32,8 +35,8 @@ def ahorcadito():
             oportunidades = 0
     
     if ganado:
-        print(Fore.GREEN + f"Ganaste!\nLa palabra era {palabraAdivinar}" + Fore.RESET)
+        print(Fore.GREEN + f"Ganaste!\nLa palabra era '{palabraAdivinar}' " + Fore.RESET)
     else:
-        print(Fore.RED + f"Perdiste!\nLa palabra era {palabraAdivinar}" + Fore.RESET)
+        print(Fore.RED + f"Perdiste!\nLa palabra era '{palabraAdivinar}' " + Fore.RESET)
 
 ahorcadito()

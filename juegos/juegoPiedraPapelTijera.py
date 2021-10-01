@@ -1,8 +1,10 @@
 import random
-from colorama import Fore
+from colorama import Fore,init
 
 puntoJugador = 0
 puntoCPU = 0
+
+init()
 
 def jugarPiedraPapelTijera():
 
