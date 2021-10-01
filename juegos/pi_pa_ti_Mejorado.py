@@ -4,10 +4,12 @@ from colorama import Fore
 puntoJugador = 0
 puntoCPU = 0
 
-
-def jugarPiedraPapelTijera(puntoJugador, puntoCPU):
+def jugarPiedraPapelTijera():
 
     while True:
+
+        global puntoJugador
+        global puntoCPU
 
         jugador = input("Elegí una opción: piedra, papel o tijera \n").lower()
         compu = random.choice(["piedra", "papel", "tijera"])
@@ -58,6 +60,4 @@ def ganoCPU(jugador, oponente):
 #inicio al programa
 #if __name__ == "__main__":
 #   jugarPiedraPapelTijera(puntoJugador, puntoCPU)
-jugarPiedraPapelTijera(puntoJugador, puntoCPU)
-
-
+jugarPiedraPapelTijera()

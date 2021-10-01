@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+from colorama import Fore
 
 #---------raiz---------
 raizP = Tk()
@@ -21,22 +22,66 @@ fondo2.place(x= 0, y= 0, relwidth= 1, relheight= 1)
 
 #---------funciones----------------------
 
+puntoJugador = 0
+puntoCPU = 0
 
-jugador = ""
-CPU = random.choice(["piedra", "papel", "tijera"])
+def Jugar(boton):
 
-def jugadorPiedra(jugador):
-    jugador = "piedra"
+    def jugarPiedraPapelTijera():
+
+        while True:
+
+            global puntoJugador
+            global puntoCPU
+
+            jugador = boton.cget("text")
+            compu = random.choice(["Piedra", "Papel", "Tijera"])
+
+            if jugador == compu:  #Empate
+                print(Fore.YELLOW + f"Empate!")
+                print(f"La CPU jugó: {compu}" + Fore.RESET)
+                print(Fore.CYAN + f"Marcador: {puntoJugador} a {puntoCPU}" + Fore.RESET)
 
 
-def jugadorPapel(jugador):
-    jugador = "papel"
+            if ganoJugador(jugador, compu): #Ganas tu
+                puntoJugador += 1
+                print(Fore.GREEN + f"Ganaste la jugada!")
+                print(f"La CPU jugó: {compu}" + Fore.RESET)
+                print(Fore.CYAN + f"Marcador: {puntoJugador} a {puntoCPU}" + Fore.RESET)
+
+            elif ganoCPU(jugador, compu): #Gana la compu
+                puntoCPU += 1
+                print(Fore.RED + f"Perdiste la jugada!")
+                print(f"La CPU jugó: {compu}" + Fore.RESET)
+                print(Fore.CYAN + f"marcador: {puntoJugador} a {puntoCPU}" + Fore.RESET)
+
+            if (puntoJugador == 3):
+                print(Fore.GREEN + "¡¡¡Ganaste!!!" + Fore.RESET)
+                break
+            elif (puntoCPU == 3):
+                print(Fore.RED + "Gano la CPU :(" + Fore.RESET)
+                break
 
 
-def jugadorTijera(jugador):
-    jugador = "tijera"
+    def ganoJugador(jugador, oponente):
+        if ((jugador == "Piedra" and oponente == "Tijera") or
+        (jugador == "Tijera" and oponente == "Papel") or
+        (jugador == "Papel" and oponente == "Piedra")):
+            return True
+        else:
+            return False
+    
+    def ganoCPU(jugador, oponente):
+        if ((oponente == "Piedra" and jugador == "Tijera") or
+        (oponente == "Tijera" and jugador == "Papel") or
+        (oponente == "Papel" and jugador == "Piedra")):
+            return True
+        else:
+            return False
+    
+    jugarPiedraPapelTijera()
 
-       
+
 
 #---------textos jugador-cpu----------
 labelJ1 = Label (frameP, text= "Jugador")
@@ -51,25 +96,34 @@ fondoOp= Label(frameP, bg="#a4b0be")
 fondoOp.place(x= 47, y= 57, width= 310, height=200)
 
 #---------botones-----------
-btnPiedra = Button(frameP, text= "Piedra", padx=2, width= 10, command=lambda:jugadorPiedra(jugador))
+btnPiedra = Button(frameP, text= "Piedra", padx=2, width= 10, command=lambda:Jugar(btnPiedra))
 btnPiedra.place(x= 50, y= 60)
 btnPiedra.config(bg= "#eccc68", font= ("Verdana", 12))
 
 
-btnPapel = Button(frameP, text= "Papel", padx=2, width= 10, command=lambda:jugadorPapel(jugador))
+btnPapel = Button(frameP, text= "Papel", padx=2, width= 10, command=lambda:Jugar(btnPapel))
 btnPapel.place(x= 50, y= 95)
 btnPapel.config(bg= "#eccc68", font= ("Verdana", 12))
 
 
-btnTijera = Button(frameP, text= "Tijera", padx=2, width= 10, command=lambda:jugadorTijera(jugador))
+btnTijera = Button(frameP, text= "Tijera", padx=2, width= 10, command=lambda:Jugar(btnTijera))
 btnTijera.place(x= 50, y= 130)
 btnTijera.config(bg= "#eccc68", font= ("Verdana", 12))
 
-
+#---------salida de Opcion CPU---------
 OpCPU = Entry(frameP, width=16)
 OpCPU.place (x=250,y=100)
 
+#---------marcador---------
 
+separador = Label(frameP,text="-")
+separador.place(x= 175, y= 180)
+separador.config(bg= "#a4b0be")
 
+marcadorJ1 = Entry(frameP, text="0")
+marcadorJ1.place(x= 150, y= 180, width=25)
+
+marcadorCPU = Entry(frameP, text= "0")
+marcadorCPU.place (x= 185, y= 180, width= 25)
 
 raizP.mainloop()

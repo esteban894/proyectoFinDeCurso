@@ -8,27 +8,29 @@ from random import randrange
 #---------raiz---------
 root = Tk()
 root.title("===Juegos de Esteban===")
-root.iconbitmap("chimuelo_icon.ico")
-root.geometry("300x150")
+root.iconbitmap("icons/chimuelo_icon.ico")
+root.geometry("330x210")
+root.resizable(0, 0)
 
 #---------frame---------
 miFrame = Frame(root)
-miFrame.pack(fill="both", expand=1)
+miFrame.pack(fill= "both", expand=1)
 
 #---------fondo---------
-imagen = PhotoImage(file = "Mango.png")
+imagen = PhotoImage(file = "img/Mango.png")
 fondo = Label (miFrame, image= imagen)
-fondo.place(x=0, y=0, relwidth=1, relheight=1)
+fondo.place(x= 0, y= 0, relwidth= 1, relheight= 1)
 
 #---------label---------
 label = Label(miFrame, text= "Elige una opción: ")
-label.grid(row=0,column=0, pady=5)
-label.config(bg="#ffe259")
+label.place(x= "10", y= "10")
+label.config(bg= "#ffa751", font= ("Serif", 11))
 
 #---------funciones---------
 #--------------------------------------------------------------ahorcado----------------------------------
 def ahorcadito():
-    from colorama import Fore
+    
+    init()
 
     oportunidades = 7
     palabraAdivinar = input("Ingrese la palabra a adivinar: ").lower()
@@ -67,8 +69,9 @@ def ahorcadito():
 
 
 #--------------------------------------------ta te ti-------------------------------------------
-def taTeTi():
 
+def taTeTi():
+    init()
     def printTablero(tabero):
         for i in range(0,7,3):
             print(tablero[i] + '|' + tablero[i+1] + "|" + tablero[i+2])
@@ -82,7 +85,8 @@ def taTeTi():
 
         while not posibleJugada:
             try:
-                posicion = int(input(Fore.BLUE + "Ingrese celda (1-9): " + Fore.RESET))
+                print(Fore.LIGHTBLUE_EX + "Ingrese celda (1-9): " + Fore.RESET)
+                posicion = int(input())
                 if tablero[posicion - 1] == " ":
                     posibleJugada = True            
                 else:
@@ -105,7 +109,6 @@ def taTeTi():
                 print(Fore.GREEN + 'El ganador es: "x"' + Fore.RESET)
             else:
                 print(Fore.GREEN + 'El gnador es: "o"' + Fore.RESET)
-            #print(Fore.GREEN + "El ganador es: " + "x" if turnoX else "El ganador es: o" + Fore.RESET)
             juegoTerminado = True
 
         if " " not in tablero:
@@ -119,7 +122,9 @@ puntoCPU = 0
 
 
 def jugarPiedraPapelTijera(puntoJugador, puntoCPU):
-
+    
+    init()
+    
     while True:
 
         jugador = input("Elegí una opción: piedra, papel o tijera \n").lower()
@@ -174,39 +179,66 @@ def ganoCPU(jugador, oponente):
 
 def encuentraElNumero():
 
+    init()
+
     numero = randrange(1,101)
 
     print("Adivina el numero entre 1 y 100")
 
-    init()
+    dif = input("Elige la dificultad: facil o dificil \n").lower()
+
+    if dif == "facil":
+
+    	intentos = 10
+    else:
+    	intentos = 5
+
+    print(f"Tienes {intentos} intentos")
 
     while True:
-        try:
-            valor = int(input())
-        except ValueError:
-            print(Fore.LIGHTRED_EX + "ingresa un caracter valido." + Fore.RESET)
-        else:
-            if numero == valor:
-                print(Fore.GREEN + f"Ganaste, el numero era {numero}" + Fore.RESET)
-                break
-            print(Fore.CYAN + "Mas chico" + Fore.RESET if (numero < valor) else Fore.YELLOW + "Mas grande" + Fore.RESET)
-
+    	try:
+    		valor = int(input())
+    
+    	except ValueError:
+    		print(Fore.RED + "Ingresa un caracter valido" + Fore.RESET)
+    
+    	else:
+        
+    		if numero == valor:
+    			print(Fore.GREEN + "Ganaste!!!" + Fore.RESET)
+    			break
+    		else:
+            
+    			intentos -=1
+    
+    			if numero < valor:
+    				print(Fore.CYAN + "Mas chico" + Fore.RESET)
+    				print(f"Intentos: {intentos}")
+    			else:
+                
+    				if intentos > 0:
+    					print(Fore.YELLOW + "Mas grande" + Fore.RESET)
+    					print(f"Intentos: {intentos}")
+    				else:
+    					print(Fore.RED + "Perdiste! :(" + Fore.RESET)
+    					print(f"El numero era {numero}")
+    					break
 
 #---------botonera---------
-botonJuego1= Button(miFrame, text="Piedra, Papel o Tijeras", width=16, command=lambda:jugarPiedraPapelTijera(puntoJugador, puntoCPU))
+botonJuego1= Button(miFrame, text="Piedra, Papel o Tijeras", width=18, height=2, command=lambda:jugarPiedraPapelTijera(puntoJugador, puntoCPU))
 botonJuego1.config(bg="#95a5a6")
-botonJuego1.grid(row=1, column=0, padx=5, pady=2)
+botonJuego1.place(x= "20",y= "50")
 
-botonJuego2= Button(miFrame, text="Ta-Te-Ti", width=8, command=lambda:taTeTi())
-botonJuego2.config(bg="#95a5a6")
-botonJuego2.grid(row=1, column=1, padx=5, pady=2)
+botonJuego2= Button(miFrame, text="Ta-Te-Ti", width= 8, height= 2, command=lambda:taTeTi())
+botonJuego2.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego2.place(x= "223", y= "50")
 
-botonJuego3= Button(miFrame, text="Ahorcado", width=10, command=lambda:ahorcadito())
-botonJuego3.config(bg="#95a5a6")
-botonJuego3.grid(row=2, column=0, padx=5, pady=2)
+botonJuego3= Button(miFrame, text="Ahorcado", width= 10, height= 2, command=lambda:ahorcadito())
+botonJuego3.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego3.place(x= "20", y= "120")
 
-botonJuego4= Button(miFrame, text="Encuentra el numero", width=20, command=lambda:encuentraElNumero())
-botonJuego4.config(bg="#95a5a6")
-botonJuego4.grid(row=2, column=1, padx=5, pady=2)
+botonJuego4= Button(miFrame, text="Encuentra el numero", width= 16, height= 2, command=lambda:encuentraElNumero())
+botonJuego4.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego4.place(x= "153", y= "120")
 
 root.mainloop()

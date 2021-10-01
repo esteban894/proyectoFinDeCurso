@@ -8,7 +8,7 @@ from random import randrange
 #---------raiz---------
 root = Tk()
 root.title("===Juegos de Esteban===")
-root.iconbitmap("chimuelo_icon.ico")
+root.iconbitmap("icons/chimuelo_icon.ico")
 root.geometry("330x210")
 root.resizable(0, 0)
 
@@ -17,32 +17,9 @@ miFrame = Frame(root)
 miFrame.pack(fill= "both", expand= 1)
 
 #---------fondos---------
-#principal
 imagen = PhotoImage(file = "img/Mango.png")
 fondo = Label (miFrame, image= imagen)
-fondo.place(x=0, y=0, relwidth= 1, relheight= 1)
-"""
-#piedra papel o tijera
-imagen2 = PhotoImage(file= "img/Mojito.png")
-fondo2 = Label(ventanaPiPaTi, image= imagen2)
-fondo2.place(x= 0, y= 0, relwidth= 1, relheight= 1)
-
-#ta te ti
-imagen3 = PhotoImage(file= "img/Radar.jpg")
-fondo3 = Label(ventanaTateti, image= imagen3)
-fondo3.place(x= 0, y= 0, relwidth= 1, relheight= 1)
-
-#ahoracadito
-imagen4 = PhotoImage(file= "img/Stripe.png")
-fondo4 = Label(ventanaAhorcadito, image= imagen4)
-fondo4.place(x= 0, y= 0, relwidth= 1, relheight= 1)
-
-#encuentra el numero
-imagen5 = PhotoImage(file= "img/BurningOrange.png")
-fondo5 = Label(ventanaEncuentraN, image= imagen4)
-fondo5.place(x= 0, y= 0, relwidth= 1, relheight= 1)
-
-"""
+fondo.place(x= 0, y= 0, relwidth= 1, relheight= 1)
 
 #---------label---------
 label = Label(miFrame, text= "Elige una opción: ")
