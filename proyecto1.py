@@ -5,6 +5,7 @@ import random
 from colorama import Fore, init
 from random import randrange
 from getpass import getpass
+import os
 
 #---------raiz---------
 root = Tk()
@@ -30,6 +31,7 @@ label.config(bg= "#ffa751", font= ("Serif", 11))
 #---------funciones---------
 #--------------------------------------------------------------ahorcado----------------------------------
 def ahorcadito():
+    os.system("cls")
     
     init()
 
@@ -68,10 +70,99 @@ def ahorcadito():
     else:
         print(Fore.RED + f"Perdiste!\nLa palabra era '{palabraAdivinar}' " + Fore.RESET)
 
+def run():
+    os.system("cls")
+
+    IMAGENES = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''']
+
+    palabra = getpass(Fore.BLUE + "Ingresa la palabra: " + Fore.RESET).lower()
+    espacios = ["_"] * len(palabra)
+    intentos = 6
+
+    init()
+
+    while True:
+        os.system("cls")
+
+        for caracter in espacios:
+            print(caracter, end=" ")
+        print(IMAGENES[intentos])
+
+        letra = input(Fore.BLUE + "Elige una letra: " + Fore.RESET).lower()[0]
+
+        encontrado = False
+
+        for idx, caracter in enumerate(palabra):
+          if caracter == letra:
+            espacios[idx] = letra
+            encontrado = True
+        if not encontrado:
+          intentos -=1
+        
+        if "_" not in espacios:
+          os.system("cls")
+          print(Fore.GREEN + f"¡¡GANASTE, la palabra era '{palabra}'!!" + Fore.RESET)
+          break
+        
+        if intentos == 0:
+          os.system("cls")
+          print(Fore.RED + f"Perdiste, la palabra era '{palabra}'" + Fore.RESET)
+          break
 
 #--------------------------------------------ta te ti-------------------------------------------
 
 def taTeTi():
+    os.system("cls")
+
     init()
     def printTablero(tablero):
         for i in range(0,7,3):
@@ -123,7 +214,8 @@ puntoCPU = 0
 
 
 def jugarPiedraPapelTijera(puntoJugador, puntoCPU):
-    
+    os.system("cls")
+
     init()
     
     while True:
@@ -179,6 +271,7 @@ def ganoCPU(jugador, oponente):
 #----------------------------------------encuentra el numero-------------------------
 
 def encuentraElNumero():
+    os.system("cls")
 
     init()
 
@@ -234,7 +327,7 @@ botonJuego2= Button(miFrame, text="Ta-Te-Ti", width= 8, height= 2, command=lambd
 botonJuego2.config(bg="#95a5a6", font= ("Serif", 11))
 botonJuego2.place(x= "223", y= "50")
 
-botonJuego3= Button(miFrame, text="Ahorcado", width= 10, height= 2, command=lambda:ahorcadito())
+botonJuego3= Button(miFrame, text="Ahorcado", width= 10, height= 2, command=lambda:run())
 botonJuego3.config(bg="#95a5a6", font= ("Serif", 11))
 botonJuego3.place(x= "20", y= "120")
 
