@@ -61,5 +61,5 @@ def ganoCPU(jugador, oponente):
 
 #inicio al programa
 #if __name__ == "__main__":
-#   jugarPiedraPapelTijera(puntoJugador, puntoCPU)
+#   jugarPiedraPapelTijera()
 jugarPiedraPapelTijera()

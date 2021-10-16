@@ -5,7 +5,7 @@
 """
 def taTeTi():
 
-    def printTablero(tabero):
+    def printTablero():
         for i in range(0,7,3):
             print(tablero[i] + '|' + tablero[i+1] + "|" + tablero[i+2])
 

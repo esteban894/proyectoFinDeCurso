@@ -4,6 +4,7 @@ from tkinter import *
 import random
 from colorama import Fore, init
 from random import randrange
+from getpass import getpass
 
 #---------raiz---------
 root = Tk()
@@ -33,7 +34,7 @@ def ahorcadito():
     init()
 
     oportunidades = 7
-    palabraAdivinar = input("Ingrese la palabra a adivinar: ").lower()
+    palabraAdivinar = getpass("Ingrese la palabra a adivinar: ").lower()
     adivinado = ["_"]* len(palabraAdivinar)
     
     print(f"Oportunidades: {oportunidades}")
@@ -63,16 +64,16 @@ def ahorcadito():
             oportunidades = 0
     
     if ganado:
-        print(Fore.GREEN + f"Ganaste!\nLa palabra era {palabraAdivinar}" + Fore.RESET)
+        print(Fore.GREEN + f"Ganaste!\nLa palabra era '{palabraAdivinar}' " + Fore.RESET)
     else:
-        print(Fore.RED + f"Perdiste!\nLa palabra era {palabraAdivinar}" + Fore.RESET)
+        print(Fore.RED + f"Perdiste!\nLa palabra era '{palabraAdivinar}' " + Fore.RESET)
 
 
 #--------------------------------------------ta te ti-------------------------------------------
 
 def taTeTi():
     init()
-    def printTablero(tabero):
+    def printTablero(tablero):
         for i in range(0,7,3):
             print(tablero[i] + '|' + tablero[i+1] + "|" + tablero[i+2])
 
