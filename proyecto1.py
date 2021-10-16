@@ -30,47 +30,7 @@ label.config(bg= "#ffa751", font= ("Serif", 11))
 
 #---------funciones---------
 #--------------------------------------------------------------ahorcado----------------------------------
-def ahorcadito():
-    os.system("cls")
-    
-    init()
-
-    oportunidades = 7
-    palabraAdivinar = getpass("Ingrese la palabra a adivinar: ").lower()
-    adivinado = ["_"]* len(palabraAdivinar)
-    
-    print(f"Oportunidades: {oportunidades}")
-    while oportunidades > 0:
-        print("".join(adivinado))
-    
-        encontrado = False
-        ganado = False
-    
-        letraValida= False
-        while not letraValida:
-            letra = input("Ingrese letra: ").lower()[0]
-            if not letra.isalpha():
-                print("Caracter invalido, vuelve a intentar.")
-            else:
-                letraValida = True
-    
-        for i in range(0,len(palabraAdivinar)):
-            if letra == palabraAdivinar[i]:
-                adivinado[i] = letra
-                encontrado = True
-        if not encontrado:
-            oportunidades -=1
-            print(f"Letra no encontrada, te quedan {oportunidades} oportunidades")
-        if "".join(adivinado) == palabraAdivinar:
-            ganado = True
-            oportunidades = 0
-    
-    if ganado:
-        print(Fore.GREEN + f"Ganaste!\nLa palabra era '{palabraAdivinar}' " + Fore.RESET)
-    else:
-        print(Fore.RED + f"Perdiste!\nLa palabra era '{palabraAdivinar}' " + Fore.RESET)
-
-def run():
+def ahorcado():
     os.system("cls")
 
     IMAGENES = ['''
@@ -125,9 +85,12 @@ def run():
 =========''']
 
     palabra = getpass(Fore.BLUE + "Ingresa la palabra: " + Fore.RESET).lower()
-    espacios = ["_"] * len(palabra)
+    indice = random.randint(0, len(palabra)-1)
+    letraInd = palabra[indice]
+    espacios = ("_" * len(palabra[:indice])) + letraInd + ("_" * len(palabra[indice+1:]))
+    espacios = list(espacios)
     intentos = 6
-
+    
     init()
 
     while True:
@@ -327,7 +290,7 @@ botonJuego2= Button(miFrame, text="Ta-Te-Ti", width= 8, height= 2, command=lambd
 botonJuego2.config(bg="#95a5a6", font= ("Serif", 11))
 botonJuego2.place(x= "223", y= "50")
 
-botonJuego3= Button(miFrame, text="Ahorcado", width= 10, height= 2, command=lambda:run())
+botonJuego3= Button(miFrame, text="Ahorcado", width= 10, height= 2, command=lambda:ahorcado())
 botonJuego3.config(bg="#95a5a6", font= ("Serif", 11))
 botonJuego3.place(x= "20", y= "120")
 
