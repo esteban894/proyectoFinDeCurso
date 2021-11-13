@@ -6,12 +6,13 @@ from colorama import Fore, init
 from random import randrange
 from getpass import getpass
 import os
+import time
 
 #---------raiz---------
 root = Tk()
 root.title("===Juegos de Esteban===")
 root.iconbitmap("icons/chimuelo_icon.ico")
-root.geometry("330x210")
+root.geometry("330x250")
 root.resizable(0, 0)
 
 #---------frame---------
@@ -281,6 +282,32 @@ def encuentraElNumero():
     					print(f"El numero era {numero}")
     					break
 
+#---------cara o cruz---------
+def moneda():
+    os.system("cls")
+    caras = 0
+    cruces = 0
+
+    print(Fore.LIGHTBLUE_EX + 'Tirando moneda...')
+
+    time.sleep(2)
+
+    print('Moneda en el aire...')
+
+    time.sleep(2)
+
+    for i in range(1):
+        tirada = random.choice(["cara", "cruz"])
+        if tirada == "cara":
+            caras += 1
+        elif tirada == "cruz":
+            cruces += 1
+
+    if caras == 1:
+        print('Ha salido cara' + Fore.RESET)
+    elif cruces == 1:
+        print('Ha salido cruz' + Fore.RESET)
+
 #---------botonera---------
 botonJuego1= Button(miFrame, text="Piedra, Papel o Tijeras", width=18, height=2, command=lambda:jugarPiedraPapelTijera(puntoJugador, puntoCPU))
 botonJuego1.config(bg="#95a5a6")
@@ -297,5 +324,10 @@ botonJuego3.place(x= "20", y= "120")
 botonJuego4= Button(miFrame, text="Encuentra el numero", width= 16, height= 2, command=lambda:encuentraElNumero())
 botonJuego4.config(bg="#95a5a6", font= ("Serif", 11))
 botonJuego4.place(x= "153", y= "120")
+
+botonJuego5= Button(miFrame, text="Cara o Cruz", width=10, height=2, command=lambda:moneda())
+botonJuego5.config(bg="#95a5a6", font= ("Serif", 11))
+botonJuego5.place(x= "20", y= "190")
+
 
 root.mainloop()
